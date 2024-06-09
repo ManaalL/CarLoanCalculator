@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class CarLoan {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user to enter car loan details
+        System.out.println("Welcome to the Car Loan Calculator!");
+
+        // Prompt the user to enter car loan amount
+        System.out.println("Enter the car loan amount:");
+        int carLoan = scanner.nextInt();
+
+        // Prompt the user to enter loan length in years
+        System.out.println("Enter the loan length (in years):");
+        int loanLength = scanner.nextInt();
+
+        // Prompt the user to enter interest rate
+        System.out.println("Enter the annual interest rate (%):");
+        int interestRate = scanner.nextInt();
+
+        // Prompt the user to enter down payment amount
+        System.out.println("Enter the down payment:");
+        int downPayment = scanner.nextInt();
+
+        // Validate user inputs and calculate monthly payment
+        if (loanLength <= 0 || interestRate <= 0) {
+            System.out.println("Error! You must take out a valid car loan.");
+        } else if (downPayment >= carLoan) {
+            System.out.println("The car can be paid in full.");
+        } else {
+            int remainingBalance = carLoan - downPayment;
+            int months = loanLength * 12;
+            int monthlyBalance = remainingBalance / months;
+            int interest = (monthlyBalance * interestRate) / 100;
+            int monthlyPayment = monthlyBalance + interest;
+
+            // Display the monthly payment
+            System.out.println("Your monthly car loan payment is: $" + monthlyPayment);
+        }
+
+        scanner.close();
+    }
+}
